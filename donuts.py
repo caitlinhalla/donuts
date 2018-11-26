@@ -13,9 +13,13 @@ def main():
 
 def write_file(filepath):
     with open(filepath) as file1:
-      with open('file2.txt', 'w') as file2:
+      with open('file2.py', 'w') as file2:
          contents = file1.read()
+         file2.write("var_1 = '''")
          file2.write(contents)
+         file2.write("'''\n")
+         file2.write("print(var_1)")
+
 
 if __name__ == "__main__":
     main()
