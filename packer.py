@@ -81,20 +81,25 @@ def main():
     write_file(args.inputFilepath, args.outputFilepath)
 
 
+obfuscator_list = ["base64", "zlib", "base64"]
+
+
 def write_file(inputFilepath, outputFilepath):
     with open(inputFilepath, "rb") as file1:
         with open(outputFilepath, 'w') as file2:
             contents = file1.read()
-            compressed_contents = obfuscators["zlib"].obfuscate(contents)
-            encoded_text = obfuscators["base64"].obfuscate(compressed_contents)
-            file2.write(obfuscators["base64"].generate_imports())
-            file2.write(obfuscators["zlib"].generate_imports())
+
+            for x in obfuscator_list:
+                contents = obfuscators[x].obfuscate(contents)
+                file2.write(obfuscators[x].generate_imports())
+
             file2.write("var_1 = '''")
-            file2.write(encoded_text.decode('ascii'))
+            file2.write(contents.decode('ascii'))
             file2.write("'''\n")
-            file2.write(
-                obfuscators["base64"].generate_deobfuscator("var_1"))
-            file2.write(obfuscators["zlib"].generate_deobfuscator("var_1"))
+
+            for x in obfuscator_list:
+                file2.write(obfuscators[x].generate_deobfuscator("var_1"))
+
             file2.write("exec(var_1)")
 
 
