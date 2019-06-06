@@ -3,7 +3,9 @@ import base64
 
 
 class Base64Obfuscator(Obfuscator):
-    OBFUSCATOR_NAME = "base64"
+    @property
+    def name(self):
+        return "base64"
 
     def obfuscate(self, contents):
         return base64.b64encode(contents)

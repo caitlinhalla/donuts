@@ -35,7 +35,7 @@ def main():
 
 
 def generate_obfuscator_menu(instantiated_obfuscator_classes):
-    return dict((item.OBFUSCATOR_NAME, item)
+    return dict((item.name, item)
                 for item in instantiated_obfuscator_classes)
 
 

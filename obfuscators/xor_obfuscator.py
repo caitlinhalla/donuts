@@ -2,7 +2,9 @@ from obfuscators.obfuscator import Obfuscator
 
 
 class XorObfuscator(Obfuscator):
-    OBFUSCATOR_NAME = "xor"
+    @property
+    def name(self):
+        return "xor"
 
     def obfuscate(self, contents):
 

@@ -2,7 +2,9 @@ from obfuscators.obfuscator import Obfuscator
 
 
 class HexObfuscator(Obfuscator):
-    OBFUSCATOR_NAME = "hex"
+    @property
+    def name(self):
+        return "hex"
 
     def obfuscate(self, contents):
 

@@ -1,10 +1,15 @@
-from abc import ABC, abstractmethod
+from abc import ABC, ABCMeta, abstractmethod
 
 
 class Obfuscator(ABC):
 
     def __init__(self):
         super().__init__()
+
+    @property
+    @abstractmethod
+    def name(self):
+        pass
 
     @abstractmethod
     def obfuscate(self, contents):

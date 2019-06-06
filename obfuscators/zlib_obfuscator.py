@@ -3,7 +3,9 @@ import zlib
 
 
 class ZlibObfuscator(Obfuscator):
-    OBFUSCATOR_NAME = "zlib"
+    @property
+    def name(self):
+        return "zlib"
 
     def obfuscate(self, contents):
         return zlib.compress(contents)
